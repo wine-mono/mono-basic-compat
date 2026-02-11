@@ -11,8 +11,11 @@ SRCS = \
 	Microsoft.VisualBasic.Compatibility.VB6/ComboBoxArray.generated.vb \
 	Microsoft.VisualBasic.Compatibility.VB6/GroupBoxArray.generated.vb \
 	Microsoft.VisualBasic.Compatibility.VB6/LabelArray.generated.vb \
+	Microsoft.VisualBasic.Compatibility.VB6/LoadResConstants.vb \
 	Microsoft.VisualBasic.Compatibility.VB6/PictureBoxArray.generated.vb \
 	Microsoft.VisualBasic.Compatibility.VB6/RadioButtonArray.generated.vb \
+	Microsoft.VisualBasic.Compatibility.VB6/ScaleMode.vb \
+	Microsoft.VisualBasic.Compatibility.VB6/Support.vb \
 	Microsoft.VisualBasic.Compatibility.VB6/TextBoxArray.generated.vb \
 	Microsoft.VisualBasic.Compatibility.VB6/ToolStripMenuItemArray.generated.vb
 
