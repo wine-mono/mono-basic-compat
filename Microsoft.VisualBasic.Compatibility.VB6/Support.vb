@@ -37,6 +37,22 @@ Namespace Microsoft.VisualBasic.Compatibility.VB6
 
 <StandardModule()> <Obsolete()>
 Public Module Support
+	' Private Fields
+
+	Private ScreenDpiX As Single = 0
+	Private ScreenDpiY As Single = 0
+
+	' Private Methods
+	Private Sub InitDpi
+		If ScreenDpiX = 0 Then
+			Using bmp As New Bitmap (1, 1)
+				ScreenDpiX = bmp.HorizontalResolution
+				ScreenDpiY = bmp.VerticalResolution
+			End Using
+		End If
+	End Sub
+
+	' Public Methods
 	Public Function CopyArray (SourceArray As Array) As Array
 		Throw New NotImplementedException()
 	End Function
@@ -234,11 +250,13 @@ Public Module Support
 	End Function
 
 	Public Function PixelsToTwipsX (X As Double) As Double
-		Throw New NotImplementedException()
+		InitDpi
+		Return X * 1440 / ScreenDpiX
 	End Function
 
 	Public Function PixelsToTwipsY (Y As Double) As Double
-		Throw New NotImplementedException()
+		InitDpi
+		Return Y * 1440 / ScreenDpiY
 	End Function
 
 	Public Sub SendKeys (Keys As String, Optional Wait As Boolean = False)
@@ -302,19 +320,23 @@ Public Module Support
 	End Function
 
 	Public Function TwipsPerPixelX () As Single
-		Throw New NotImplementedException()
+		InitDpi
+		Return 1440 / ScreenDpiX
 	End Function
 
 	Public Function TwipsPerPixelY () As Single
-		Throw New NotImplementedException()
+		InitDpi
+		Return 1440 / ScreenDpiY
 	End Function
 
 	Public Function TwipsToPixelsX (X As Double) As Double
-		Throw New NotImplementedException()
+		InitDpi
+		Return X * ScreenDpiX / 1440
 	End Function
 
 	Public Function TwipsToPixelsY (Y As Double) As Double
-		Throw New NotImplementedException()
+		InitDpi
+		Return Y * ScreenDpiY / 1440
 	End Function
 
 	Public Sub ValidateControls (Form As ContainerControl)
