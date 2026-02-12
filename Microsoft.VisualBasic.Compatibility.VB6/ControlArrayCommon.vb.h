@@ -26,11 +26,8 @@
 ' WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 '
 
-#define CONCAT_(a,b) a##b
-#define CONCAT(a,b) CONCAT_(a,b)
-
 #ifndef CLASSNAME
-# define CLASSNAME CONCAT(TYPE,Array)
+#define CLASSNAME TYPEArray
 #endif
 
 <Obsolete()>
@@ -54,7 +51,7 @@ Implements IExtenderProvider
 #ifdef TEXTBOXBASE
 		TextBoxBase_HookupControlEvents (DirectCast(o,TYPE))
 #endif
-		CONCAT(TYPE, _HookupControlEvents) (DirectCast(o,TYPE))
+		TYPE_HookupControlEvents (DirectCast(o,TYPE))
 	End Sub
 
 	' Public methods

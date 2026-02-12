@@ -1,7 +1,8 @@
 
+MONO=mono
+CSC=csc
 VBC=vbc
 SN=sn
-CPP=cpp
 
 SRCS = \
 	AssemblyInfo.vb \
@@ -22,8 +23,11 @@ SRCS = \
 all: Microsoft.VisualBasic.Compatibility.dll
 .PHONY: all
 
-%.generated.vb: %.vb.cpp Microsoft.VisualBasic.Compatibility.VB6/ControlArrayCommon.vb.h 
-	$(CPP) -P -w $< -o $@
+genvb.exe: genvb.cs
+	$(CSC) $<
+
+%.generated.vb: %.vb.cpp genvb.exe Microsoft.VisualBasic.Compatibility.VB6/ControlArrayCommon.vb.h 
+	$(MONO) genvb.exe $< $@
 
 Microsoft.VisualBasic.Compatibility.dll: $(SRCS)
 	$(VBC) -target:library -debug+ -define:_MYTYPE='"Empty"' -out:$@ $(SRCS)
